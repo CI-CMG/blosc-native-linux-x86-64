@@ -6,7 +6,7 @@
 
     <groupId>io.github.ci-cmg.blosc</groupId>
     <artifactId>blosc-native-linux-x86-64</artifactId>
-    <version>1.21.4.0-SNAPSHOT</version>
+    <version>1.21.4-SNAPSHOT</version>
 
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -44,8 +44,8 @@
 
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <blosc.version>1.21.4</blosc.version>
+        <maven.compiler.release>8</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <javadoc.version>3.3.1</javadoc.version>
@@ -76,10 +76,16 @@
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.11.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.22.2</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
@@ -144,7 +150,6 @@
                     <releaseProfiles>release,site-publish</releaseProfiles>
                     <goals>deploy site</goals>
                     <tagNameFormat>v@{project.version}</tagNameFormat>
-                    <arguments>-Pdep-check -D${sign.serverId}</arguments>
                 </configuration>
             </plugin>
 
@@ -318,6 +323,7 @@
                         <artifactId>maven-site-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-resources-plugin</artifactId>
                         <version>3.1.0</version>
                         <executions>
